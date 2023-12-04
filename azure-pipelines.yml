@@ -56,7 +56,7 @@ stages:
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
 
-    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       displayName: 'Upload package'
       artifact: drop
 
@@ -79,9 +79,9 @@ stages:
               versionSpec: '$(pythonVersion)'
             displayName: 'Use Python version'
 
-          - task: AzureWebApp@1
-            displayName: 'Deploy Azure Web App : '
-            inputs:
-              azureSubscription: $(azureServiceConnectionId)
-              appName: $(webAppName)
-              package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
+          # - task: AzureWebApp@1
+          #   displayName: 'Deploy Azure Web App : '
+          #   inputs:
+          #     azureSubscription: $(azureServiceConnectionId)
+          #     appName: $(webAppName)
+          #     package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
